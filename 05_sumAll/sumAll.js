@@ -1,12 +1,20 @@
+// polyfill for Number.isInteger(num)
+const isNumber = num => {
+    return (
+        typeof num == "number" && // *** typeof NaN == "number" ***
+        !isNaN(num)
+    )
+}
+
 /**
- * Sum all numbers in a range [from ~ upTo]
+ * Sums all numbers in range [from ~ upTo]
  * @param {number} from 
  * @param {number} upTo 
  */
 const sumAll = function(from, upTo) {
     if(
         from < 0 || upTo < 0 ||
-        typeof from != "number" || typeof upTo != "number"
+        !isNumber(from) || !isNumber(upTo) // !Number.isInteger(from) || !isNumber(upTo)
     )
         return 'ERROR'
 
