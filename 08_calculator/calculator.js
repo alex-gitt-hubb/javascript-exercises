@@ -1,25 +1,68 @@
-const add = function() {
-	
+function isNumber(num) {
+  return (
+    num.constructor === Number &&
+    isNaN(num) == false // NOTE!!!   typeof NaN === 'number'
+  )
+}
+
+// add
+const add = function(numA, numB) {
+  if(!isNumber(numA) || !isNumber(numB))  throw new Error('invalid argument')
+  //
+	return numA + numB
 };
 
-const subtract = function() {
-	
+// subtract
+const subtract = function(numA, numB) {
+  if(!isNumber(numA) || !isNumber(numB))  throw new Error('invalid argument')
+  //
+	return numA - numB
 };
 
-const sum = function() {
-	
+// sum
+/** @param arr {number[]} */
+const sum = function(arr) {
+	return arr.reduce((acc, num) => acc + num, 0)
 };
 
-const multiply = function() {
+// multiply
+/** @param arr {number[]} */
+const multiply = function(arr) {
+  if(arr.length < 1) return 0
+  //
+  return arr.reduce((acc, num) => acc * num, 1)
+};
+
+// power
+//
+// helper
+function positivePower(num, powerGreaterThanZero) {
+  return num ** powerGreaterThanZero
+}
+//
+/**
+ * @param num {number}
+ * @param pow {number}
+*/
+const power = function(num, pow) {
+  if(pow === 0) return 1
+  //
+  if(pow > 0) return positivePower(num, pow)
+  //
+  // pow < 0:   num / (num ** (-pow + 1))
+	return num / positivePower(num, -pow + 1) // found myself
 
 };
 
-const power = function() {
-	
-};
-
-const factorial = function() {
-	
+// factorial
+/** @param num {number} */
+const factorial = function(num) {
+  if(num < 0)  throw new Error('invalid argument')
+	// if(num === 0) return 1 // 0! = 1   (covered by code below)
+  //
+  let ret = 1
+  for(let i=2; i<=num; ++i)   ret *= i
+  return ret
 };
 
 // Do not edit below this line
