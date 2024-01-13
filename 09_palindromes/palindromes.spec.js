@@ -1,28 +1,31 @@
-const palindromes = require('./palindromes')
+const isPalindrome = require('./palindromes')
 
-describe('palindromes', () => {
-  test('works with single words', () => {
-    expect(palindromes('racecar')).toBe(true);
+describe('isPalindrome', () => {
+  test('works with a single word with odd letters number', () => {
+    expect(isPalindrome('racecar')).toBe(true);
   });
-  test.skip('works with punctuation ', () => {
-    expect(palindromes('racecar!')).toBe(true);
+  test('works with a single word with even letters number', () => {
+    expect(isPalindrome('raccar')).toBe(true);
   });
-  test.skip('works with upper-case letters ', () => {
-    expect(palindromes('Racecar!')).toBe(true);
+  test('skips punctuation', () => {
+    expect(isPalindrome('rac,ecar!')).toBe(true);
   });
-  test.skip('works with multiple words', () => {
-    expect(palindromes('A car, a man, a maraca.')).toBe(true);
+  test('is case-insensitive', () => {
+    expect(isPalindrome('Racecar!')).toBe(true);
   });
-  test.skip('works with multiple words', () => {
-    expect(palindromes('Animal loots foliated detail of stool lamina.')).toBe(true);
+  test('accepts multiple words with punctuation', () => {
+    expect(isPalindrome('A car, a man, a maraca.')).toBe(true);
   });
-  test.skip('doesn\'t just always return true', () => {
-    expect(palindromes('ZZZZ car, a man, a maracaz.')).toBe(false);
+  test('accepts multiple words', () => {
+    expect(isPalindrome('Animal loots foliated detail of stool lamina.')).toBe(true);
   });
-  test.skip('works with numbers in a string', () => {
-    expect(palindromes('rac3e3car')).toBe(true);
+  test('doesn\'t just always return true', () => {
+    expect(isPalindrome('ZZZZ car, a man, a maracaz.')).toBe(false);
   });
-  test.skip('works with unevenly spaced numbers in a string', () => {
-    expect(palindromes('r3ace3car')).toBe(false);
+  test('accepts numbers in a string', () => {
+    expect(isPalindrome('rac3e3car')).toBe(true);
+  });
+  test('works with unevenly spaced numbers in a string', () => {
+    expect(isPalindrome('r3ace3car')).toBe(false);
   });
 });
