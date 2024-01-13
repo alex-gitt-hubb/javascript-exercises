@@ -49,9 +49,9 @@ const power = function(num, pow) {
   //
   if(pow > 0) return positivePower(num, pow)
   //
-  // pow < 0:   num / (num ** (-pow + 1))
-	return num / positivePower(num, -pow + 1) // found myself
-
+  // pow < 0:   num / (num ** (-pow + 1)) // oO/
+  // OR
+	return 1 / positivePower(num, -pow) // (8)^-2 == 1/(8^2)
 };
 
 // factorial
